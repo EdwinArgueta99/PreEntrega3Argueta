@@ -1,0 +1,168 @@
+/*reseteo*/
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, img, ul, ol, li, form, label {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    transition: background-color 0.3s;
+}
+
+
+
+
+  
+/* Ajustes generales */
+body {
+    line-height: 1;
+}
+  
+ol, ul {
+    list-style: none;
+}
+  
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+/* Enlaces sin estilo por defecto */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/*Fin de reseteo*/
+
+/*navbar*/
+.container{
+    background-color: black;
+}
+.center{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.logoimg{
+    width: auto;
+    height: 100px;
+}
+.logoimg:hover{
+    background-image: url(../assets/images/FGred.svg);
+}
+
+
+.options{
+    margin-right: 100px;
+}
+
+nav.options ul li {
+    display: inline-block;
+    justify-content: center;
+    text-align: center;
+    margin: 10px;
+    border-radius: 5px;
+    padding: 20px;
+}
+nav.options ul li:hover{
+    background-color: #FF2400;
+    transition-duration: 0.8s;
+}
+
+
+  
+/*navbar letter style*/
+nav.options ul li a {
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+}
+
+/*switch letters style*/
+.custom-switch{
+    color: white;
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+}
+
+/*switch margin*/
+.form-check-input{
+    margin-top: 0px;
+}
+
+/*color*/
+.form-check-input:checked {
+    background-color:  #FF2400;
+    border-color: #FF2400;
+}
+
+/* body Styles */
+.divnombre{
+    display: flex;
+    align-items: center; /*este es el Y*/
+    justify-content: center; /*este es el X*/
+    background-color: rgb(225, 225, 225);
+    height: 8vh;
+}
+
+.divimg{
+    display: flex;
+    justify-content: center;
+    height: 60vh;
+}
+
+
+/*estilos ultimo boton*/
+.botonmain{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.btn-custome{
+    padding: 20px;
+}
+
+.btn-custome:hover{
+    background-color: #FF2400;
+    transition-duration: 0.8s;
+}
+
+
+/*Fin de estilos nav bar*/
+
+/**/
+
+
+
+
+
+
+
+
+
+/* Estilo de card en pagina de compras */
+
+.Cards{
+    display: flex;
+    justify-content: space-around;
+    margin: 30px;
+}
+
+
+/* darkmode on */
+.darkmode{
+    background-color: black;
+    color: white;
+}
+
+
+.darkmodecards{
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+}
