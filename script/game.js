@@ -9,9 +9,38 @@ muestraNombre.innerHTML=`<h1>Nombre de usuario : ${storedUsername}</h1>`;
 let toggle= document.getElementById("flexSwitchCheckDefault");
 let body = document.body;
 let isDark=localStorage.getItem("darkmode")
-
-
 const cards = document.querySelectorAll(".card");
+
+
+// Boton de pagar
+const botonPagar = document.getElementById("botonPagar");
+
+botonPagar.addEventListener("click", () => {
+    if (carrito.length > 0) {
+        Swal.fire({
+            title: "Confirmar compra",
+            text: "¿Desea confirmar la compra?",
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Sí, confirmar",
+            cancelButtonText: "Cancelar",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                carrito = [];
+                actualizarCarrito();
+                localStorage.removeItem("carrito");
+                Swal.fire("¡Compra realizada con éxito!", "", "success");
+            }
+        });
+    } else {
+        Swal.fire("El carrito está vacío", "Agregue productos antes de pagar", "warning");
+    }
+});
+
+// Fin del Boton de pagar
+
 
 // Función para cambiar tarjetas en el modo oscuro
 function updateCardStyles(isDark) {
@@ -30,7 +59,6 @@ if (isDark==="true"){
     toggle.checked=true;
     updateCardStyles(true);
 }
-
 
 //hace cambios el darkmode
 toggle.addEventListener("change", ()=>{
@@ -68,6 +96,7 @@ var arrayProductos = [
 // carrito
 let carrito = [];
 
+
 // Traer elementos del DOM
 let comp1 = document.getElementById("Compra1");
 let comp2 = document.getElementById("Compra2");
@@ -83,6 +112,8 @@ window.onload = () => {
         actualizarCarrito();
     }
 };
+
+
 
 comp1.addEventListener("click", () => {
     agregarAlCarrito(arrayProductos[0]);
@@ -101,9 +132,9 @@ function agregarAlCarrito(producto) {
     const index = carrito.findIndex(item => item.nombre === producto.nombre);
     
     if (index === -1) {
-        carrito.push({ ...producto, cantidad: 1 }); // Agregar producto al carrito con cantidad
+        carrito.push({ ...producto, cantidad: 1 }); // Agregar producto 
     } else {
-        carrito[index].cantidad++; // Incrementar cantidad si ya existe
+        carrito[index].cantidad++; // Incrementar cantidad
     }
 
     actualizarCarrito();
@@ -140,3 +171,47 @@ function eliminarCantidadProducto(index) {
 }
 
 
+// Función para cargar comentarios desde un JSON
+function cargarComentarios() {
+    fetch('../Json/coments.json')
+        .then(response => response.json())
+        .then(data => {
+            let listaComentarios = document.getElementById("listaComentarios");
+
+            listaComentarios.innerHTML = "Comentarios De Nuestros clientes";
+
+            // Crea una lista desordenada
+            let ul = document.createElement("ul");
+
+            // Recorre los comentarios y agrega cada uno como un elemento de lista
+            data.forEach(comentario => {
+                let card = document.createElement("div");
+                card.classList.add("card", "mb-3");
+
+                // Agrega la clase darkmodecomments si está en modo oscuro
+                if (isDark) {
+                    card.classList.add("darkmodecomments");
+                }
+
+                card.innerHTML = `
+                    <div class="card-body">
+                        <h5 class="card-title custom">Comentario de ${comentario.nombre}</h5>
+                        <p class="card-text">${comentario.coment}</p>
+                    </div>
+                `;
+
+                // Añade la tarjeta al contenedor de comentarios
+                ul.appendChild(card);
+            });
+
+            // Agrega la lista desordenada al contenedor de comentarios
+            listaComentarios.appendChild(ul);
+        })
+        .catch(error => {
+            console.error('Error al cargar comentarios:', error);
+        });
+}
+
+window.onload = () => {
+    cargarComentarios();
+}

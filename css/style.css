@@ -10,9 +10,6 @@ html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, img, ul, ol, li, form, labe
 }
 
 
-
-
-  
 /* Ajustes generales */
 body {
     line-height: 1;
@@ -139,14 +136,14 @@ nav.options ul li a {
 /**/
 
 
-
-
-
-
-
-
-
 /* Estilo de card en pagina de compras */
+
+.Carrito{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 8vh;
+}
 
 .Cards{
     display: flex;
@@ -165,4 +162,14 @@ nav.options ul li a {
 .darkmodecards{
     background-color: rgb(255, 255, 255);
     color: rgb(0, 0, 0);
+}
+
+.darkmodecomments {
+    color: #000000; 
+    background-color: #ffffff; 
+}
+
+
+.comentarios{
+    text-align: center;
 }
